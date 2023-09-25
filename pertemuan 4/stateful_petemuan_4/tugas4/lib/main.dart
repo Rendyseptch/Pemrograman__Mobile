@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stateful_petemuan_4/result.dart';
+import 'package:tugas4/result.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,12 +27,13 @@ class _MyAppState extends State<MyApp> {
         _result = _inputUser + 273;
       else
         _result = (4 / 5) * _inputUser;
+      listViewItem.add("$_inputUser Celcius = $_result $_newValue");
     });
   }
 
   void convertTemperature() {}
 
-//  List<String> listViewItem = List<String>[];
+  List<String> listViewItem = [];
 
   void dropdownOnChanged(String changeValue) {
     setState(() {
@@ -56,8 +57,9 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             children: [
               TextFormField(
-                controller: inputController, 
-                keyboardType: TextInputType.number,// Menggunakan inputController
+                controller: inputController,
+                keyboardType:
+                    TextInputType.number, // Menggunakan inputController
                 decoration: InputDecoration(
                   labelText: 'Masukkan Suhu',
                 ),
@@ -74,7 +76,7 @@ class _MyAppState extends State<MyApp> {
                           child: Text(value),
                         );
                       }).toList(),
-                       value: _newValue,
+                      value: _newValue,
                       onChanged: (changeValue) {
                         setState(() {
                           _newValue = changeValue!;
@@ -88,30 +90,40 @@ class _MyAppState extends State<MyApp> {
               ),
 
               SizedBox(
-
-              child:Container(
-                width: double
-                    .infinity, // Menambahkan ini untuk memanjangkan button
-                child: ElevatedButton(
-                  onPressed: perhitunganSuhu,
-                  child: Text(
-                    "Konversi Suhu",
-                    style: TextStyle(fontSize: 22),
+                child: Container(
+                  width: double
+                      .infinity, // Menambahkan ini untuk memanjangkan button
+                  child: ElevatedButton(
+                    onPressed: perhitunganSuhu,
+                    child: Text(
+                      "Konversi Suhu",
+                      style: TextStyle(fontSize: 22),
+                    ),
                   ),
                 ),
               ),
-              ),
               //container jejeran 3
               Container(
+                margin: EdgeInsets.only(top: 10),
                 child: Text(
-                  "Riwayat Konversi",
-                  style: TextStyle(fontSize: 25),
+                  'Riwayat Konversi',
+                  style: TextStyle(fontSize: 20),
                 ),
               ),
 
-//               Expanded(
-//  child: RiwayatKonversi(listViewItem: listViewItem),
-//  ),
+              Expanded(
+                child: ListView(
+                  children: listViewItem.map((String value) {
+                    return Container(
+                      margin: EdgeInsets.all(10),
+                      child: Text(
+                        value,
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
             ],
             //JEJERAN 3
           ),
