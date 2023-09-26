@@ -23,7 +23,7 @@ class homepage extends StatelessWidget {
             final item = items[index];
             return InkWell (
               onTap:(){
-                // Navigator.pushNamed(context,'/item');
+                
                  Navigator.pushNamed(context, '/item', arguments: item);
               },
               child: Card(
