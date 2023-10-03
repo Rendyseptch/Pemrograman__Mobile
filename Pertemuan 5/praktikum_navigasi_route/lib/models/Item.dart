@@ -6,4 +6,5 @@ class Item{
   String berat;
 
   Item({required this.name, required this.berat, required this.price});
+  
 }
